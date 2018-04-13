@@ -13,9 +13,9 @@ class Customer
   end
 
   def save()
-    sql = "INSERT INTO customers (name) VALUES ($1, $2) RETURNING id"
+    sql = "INSERT INTO customers (name, funds) VALUES ($1, $2) RETURNING id"
     values = [@name, @funds]
-    user = SqlRunner.run( sql, values ).first
+    user = SqlRunner.run(sql, values).first
     @id = user['id'].to_i
   end
 
@@ -23,7 +23,7 @@ class Customer
     sql = "SELECT * FROM customers"
     values = []
     customers = SqlRunner.run(sql, values)
-    result = User.map_customers(customers)
+    result = Customer.map_customers(customers)
     return result
   end
 

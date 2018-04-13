@@ -2,7 +2,7 @@ require_relative("../db/sql_runner")
 require_relative("customer.rb")
 require_relative("film.rb")
 
-class Visit
+class Ticket
 
   attr_reader :id
   attr_accessor :customer_id, :film_id
@@ -14,7 +14,7 @@ class Visit
   end
 
   def save()
-    sql = "INSERT INTO visits (customer_id, film_id) VALUES ($1, $2) RETURNING id"
+    sql = "INSERT INTO tickets (customer_id, film_id) VALUES ($1, $2) RETURNING id"
     values = [@customer_id, @film_id]
     ticket = SqlRunner.run(sql,values).first
     @id = ticket['id'].to_i
@@ -23,7 +23,7 @@ class Visit
   def self.all()
     sql = "SELECT * FROM tickets"
     tickets = SqlRunner.run(sql)
-    result = Ticket.map_tickets(ticket)
+    result = Ticket.map_tickets(tickets)
     return result
   end
 
@@ -42,12 +42,12 @@ class Visit
 
   def customer
     sql = "SELECT * FROM customers WHERE id = $1"
-    values = [@user_id]
+    values = [@customer_id]
     customers = SqlRunner.run(sql, values).first()
     return Customer.new(customers)
   end
 
-  def self.map_visit(ticket_data)
+  def self.map_tickets(ticket_data)
     return ticket_data.map{|ticket| Ticket.new(ticket)}
   end
 
