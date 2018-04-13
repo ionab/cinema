@@ -44,4 +44,9 @@ class Film
     return films_data.map{|film| Film.new(film)}
   end
 
+  def count_of_films_customers()
+    return customers.count
+  end
+
+
 end

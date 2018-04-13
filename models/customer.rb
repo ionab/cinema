@@ -1,5 +1,6 @@
 require_relative("../db/sql_runner")
 require_relative("film.rb")
+require_relative("ticket.rb")
 
 class Customer
 
@@ -47,5 +48,11 @@ class Customer
   def buy(film)
     @funds -= film.price
   end
+
+  def count_of_customers_tickets()
+    return films.count
+  end
+
+
 
 end
