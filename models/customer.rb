@@ -44,4 +44,8 @@ class Customer
     return customer_data.map{|customer| Customer.new(customer)}
   end
 
+  def buy(film)
+    @funds -= film.price
+  end
+
 end
