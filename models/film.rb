@@ -34,7 +34,7 @@ class Film
   end
 
   def customers()
-    sql = "SELECT customers.* FROM customers INNER JOIN tickets ON customers.id = tickets.customer_id WHERE tickets.film_id = $1"
+    sql = "SELECT customers.* FROM customers INNER JOIN tickets ON customers.id = tickets.customer_id WHERE tickets.film_id = $1 ORDER BY customers.name ASC;"
     values = [@id]
     customers = SqlRunner.run(sql, values)
     return Customer.map_customers(customers)
