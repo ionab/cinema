@@ -1,10 +1,12 @@
 require_relative('models/customer')
 require_relative('models/ticket')
 require_relative('models/film')
+require_relative('models/screening')
 
 require('pry-byebug')
 
 Ticket.delete_all()
+Screening.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
@@ -77,5 +79,21 @@ ticket10 = Ticket.new({"customer_id" => customer3.id,
                       "film_id" => film1.id})
 ticket10.save()
 
+screening1 = Screening.new("film_id" => film1.id, "show_date" => "30 April 2018", "time" => "12:00", "capacity" => 50)
+screening1.save()
+screening2 = Screening.new("film_id" => film2.id, "show_date" => "30 May 2018", "time" => "12:00", "capacity" => 50)
+screening2.save()
+screening3 = Screening.new("film_id" => film3.id, "show_date" => "1 April 2018", "time" => "12:00", "capacity" => 50)
+screening3.save()
+screening4 = Screening.new("film_id" => film1.id, "show_date" => "2 April 2018", "time" => "12:00", "capacity" => 50)
+screening4.save()
+screening5 = Screening.new("film_id" => film2.id, "show_date" => "2 April 2018", "time" => "12:00", "capacity" => 50)
+screening5.save()
+screening6 = Screening.new("film_id" => film3.id, "show_date" => "5 April 2018", "time" => "12:00", "capacity" => 50)
+screening6.save()
+screening7 = Screening.new("film_id" => film1.id, "show_date" => "7 April 2018", "time" => "12:00", "capacity" => 50)
+screening7.save()
+screening8 = Screening.new("film_id" => film2.id, "show_date" => "8 April 2018", "time" => "12:00", "capacity" => 50)
+screening8.save()
 binding.pry
 nil
